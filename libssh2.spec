@@ -1,19 +1,17 @@
 %define	rname libssh2
 
-%define	major 2
+%define	major 1
 %define libname	%mklibname ssh %{major}
 %define develname %mklibname ssh -d
 
 Summary:	A library implementing the SSH2 protocol
 Name:		%{rname}
 Version:	0.15
-Release:	%mkrel 1
+Release:	%mkrel 2
 Group:		System/Libraries
 License:	BSD
 URL:		http://www.libssh2.org/
-Source0:	http://prdownloads.sourceforge.net/libssh2/%{rname}-%{version}.tar.bz2
-Patch0:		libssh2-0.14-soname.diff
-Patch1:		libssh2-0.4-lib64.diff
+Source0:	http://prdownloads.sourceforge.net/libssh2/%{rname}-%{version}.tar.gz
 BuildRequires:	pkgconfig
 BuildRequires:	openssl-devel
 BuildRequires:	zlib-devel
@@ -21,10 +19,9 @@ BuildRequires:	libtool
 BuildRoot:	%{_tmppath}/%{rname}-%{version}-buildroot
 
 %description
-libssh2 is a library implementing the SSH2 protocol as defined by
-Internet Drafts: SECSH-TRANS(22), SECSH-USERAUTH(25),
-SECSH-CONNECTION(23), SECSH-ARCH(20), SECSH-FILEXFER(06)*,
-SECSH-DHGEX(04), and SECSH-NUMBERS(10).
+libssh2 is a library implementing the SSH2 protocol as defined by Internet
+Drafts: SECSH-TRANS(22), SECSH-USERAUTH(25), SECSH-CONNECTION(23),
+SECSH-ARCH(20), SECSH-FILEXFER(06)*, SECSH-DHGEX(04), and SECSH-NUMBERS(10).
 
 %if "%{_lib}" != "lib"
 %package -n     %{libname}
@@ -32,10 +29,9 @@ Summary:	A library implementing the SSH2 protocol
 Group:		System/Libraries
 
 %description -n %{libname}
-libssh2 is a library implementing the SSH2 protocol as defined by
-Internet Drafts: SECSH-TRANS(22), SECSH-USERAUTH(25),
-SECSH-CONNECTION(23), SECSH-ARCH(20), SECSH-FILEXFER(06)*,
-SECSH-DHGEX(04), and SECSH-NUMBERS(10).
+libssh2 is a library implementing the SSH2 protocol as defined by Internet
+Drafts: SECSH-TRANS(22), SECSH-USERAUTH(25), SECSH-CONNECTION(23),
+SECSH-ARCH(20), SECSH-FILEXFER(06)*, SECSH-DHGEX(04), and SECSH-NUMBERS(10).
 %endif
 
 %package -n	%{develname}
@@ -46,40 +42,40 @@ Provides:	libssh-devel = %{version}
 Requires:	%{libname} = %{version}
 
 %description -n	%{develname}
-libssh2 is a library implementing the SSH2 protocol as defined by
-Internet Drafts: SECSH-TRANS(22), SECSH-USERAUTH(25),
-SECSH-CONNECTION(23), SECSH-ARCH(20), SECSH-FILEXFER(06)*,
-SECSH-DHGEX(04), and SECSH-NUMBERS(10).
+libssh2 is a library implementing the SSH2 protocol as defined by Internet
+Drafts: SECSH-TRANS(22), SECSH-USERAUTH(25), SECSH-CONNECTION(23),
+SECSH-ARCH(20), SECSH-FILEXFER(06)*, SECSH-DHGEX(04), and SECSH-NUMBERS(10).
 
-This package contains the static %{rname} library and its header
-files.
+This package contains the static %{rname} library and its header files.
 
 %prep
 
 %setup -q -n %{rname}-%{version}
-%patch0 -p0
-%patch1 -p1
-
-%build
-
-%configure2_5x
 
 # this is a mess
-find -name Makefile | xargs perl -pi -e "s|^LDFLAGS.*|LDFLAGS=-L%{_libdir} -lssl -lcrypto -ldl -lz|g"
+perl -pi -e "s|/lib/|/%{_lib}/|g" configure.in
+perl -pi -e "s|/lib\b|/%{_lib}|g" configure.in
+
+%build
+rm -f configure
+libtoolize --copy --force; aclocal -I m4; autoconf; automake
+
+%serverbuild
+
+%configure2_5x \
+    --without-libgcrypt-prefix \
+    --with-openssl=%{_prefix} \
+    --with-libz=%{_prefix}
 
 %make
-%make -C src libssh2.a
+
+%check
+make check
 
 %install
-[ "%{buildroot}" != "/" ] && rm -rf %{buildroot}
+rm -rf %{buildroot}
 
-install -d %{buildroot}%{_includedir}
-install -d %{buildroot}%{_libdir}
-
-install -m0644 include/*.h  %{buildroot}%{_includedir}/
-install -m0755 src/libssh2.a %{buildroot}%{_libdir}/
-install -m0755 src/libssh2.so.%{major} %{buildroot}%{_libdir}/
-ln -snf libssh2.so.%{major} %{buildroot}%{_libdir}/libssh2.so
+%makeinstall_std
 
 %post -n %{libname} -p /sbin/ldconfig
 
@@ -90,7 +86,7 @@ ln -snf libssh2.so.%{major} %{buildroot}%{_libdir}/libssh2.so
 
 %files -n %{libname}
 %defattr(-,root,root)
-%doc INSTALL LICENSE README
+%doc AUTHORS COPYING ChangeLog NEWS README
 %{_libdir}/*.so.*
 
 %files -n %{develname}
@@ -98,3 +94,5 @@ ln -snf libssh2.so.%{major} %{buildroot}%{_libdir}/libssh2.so
 %{_includedir}/*
 %{_libdir}/*.so
 %{_libdir}/*.a
+%{_libdir}/*.la
+%{_mandir}/man3/*
