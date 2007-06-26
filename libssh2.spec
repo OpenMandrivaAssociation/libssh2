@@ -2,11 +2,12 @@
 
 %define	major 2
 %define libname	%mklibname ssh %{major}
+%define develname %mklibname ssh -d
 
 Summary:	A library implementing the SSH2 protocol
 Name:		%{rname}
-Version:	0.14
-Release:	%mkrel 2
+Version:	0.15
+Release:	%mkrel 1
 Group:		System/Libraries
 License:	BSD
 URL:		http://www.libssh2.org/
@@ -17,8 +18,7 @@ BuildRequires:	pkgconfig
 BuildRequires:	openssl-devel
 BuildRequires:	zlib-devel
 BuildRequires:	libtool
-BuildRequires:	autoconf2.5
-BuildRoot:	%{_tmppath}/%{rname}-%{version}-root
+BuildRoot:	%{_tmppath}/%{rname}-%{version}-buildroot
 
 %description
 libssh2 is a library implementing the SSH2 protocol as defined by
@@ -38,14 +38,14 @@ SECSH-CONNECTION(23), SECSH-ARCH(20), SECSH-FILEXFER(06)*,
 SECSH-DHGEX(04), and SECSH-NUMBERS(10).
 %endif
 
-%package -n	%{libname}-devel
+%package -n	%{develname}
 Summary:	Static library and header files for the %{rname} library
 Group:		Development/C
 Provides:	%{rname}-devel = %{version}
 Provides:	libssh-devel = %{version}
 Requires:	%{libname} = %{version}
 
-%description -n	%{libname}-devel
+%description -n	%{develname}
 libssh2 is a library implementing the SSH2 protocol as defined by
 Internet Drafts: SECSH-TRANS(22), SECSH-USERAUTH(25),
 SECSH-CONNECTION(23), SECSH-ARCH(20), SECSH-FILEXFER(06)*,
@@ -93,10 +93,8 @@ ln -snf libssh2.so.%{major} %{buildroot}%{_libdir}/libssh2.so
 %doc INSTALL LICENSE README
 %{_libdir}/*.so.*
 
-%files -n %{libname}-devel
+%files -n %{develname}
 %defattr(-,root,root)
 %{_includedir}/*
 %{_libdir}/*.so
 %{_libdir}/*.a
-
-
