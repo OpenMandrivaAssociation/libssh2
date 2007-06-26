@@ -1,8 +1,8 @@
 %define	rname libssh2
 
 %define	major 1
-%define libname	%mklibname ssh %{major}
-%define develname %mklibname ssh -d
+%define libname	%mklibname ssh2_ %{major}
+%define develname %mklibname ssh2 -d
 
 Summary:	A library implementing the SSH2 protocol
 Name:		%{rname}
@@ -23,7 +23,6 @@ libssh2 is a library implementing the SSH2 protocol as defined by Internet
 Drafts: SECSH-TRANS(22), SECSH-USERAUTH(25), SECSH-CONNECTION(23),
 SECSH-ARCH(20), SECSH-FILEXFER(06)*, SECSH-DHGEX(04), and SECSH-NUMBERS(10).
 
-%if "%{_lib}" != "lib"
 %package -n     %{libname}
 Summary:	A library implementing the SSH2 protocol
 Group:		System/Libraries
@@ -32,7 +31,6 @@ Group:		System/Libraries
 libssh2 is a library implementing the SSH2 protocol as defined by Internet
 Drafts: SECSH-TRANS(22), SECSH-USERAUTH(25), SECSH-CONNECTION(23),
 SECSH-ARCH(20), SECSH-FILEXFER(06)*, SECSH-DHGEX(04), and SECSH-NUMBERS(10).
-%endif
 
 %package -n	%{develname}
 Summary:	Static library and header files for the %{rname} library
