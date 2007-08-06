@@ -6,8 +6,8 @@
 
 Summary:	A library implementing the SSH2 protocol
 Name:		%{rname}
-Version:	0.15
-Release:	%mkrel 2
+Version:	0.16
+Release:	%mkrel 1
 Group:		System/Libraries
 License:	BSD
 URL:		http://www.libssh2.org/
@@ -80,7 +80,7 @@ rm -rf %{buildroot}
 %postun -n %{libname} -p /sbin/ldconfig
 
 %clean
-[ "%{buildroot}" != "/" ] && rm -rf %{buildroot}
+rm -rf %{buildroot}
 
 %files -n %{libname}
 %defattr(-,root,root)
