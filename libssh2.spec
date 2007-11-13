@@ -56,7 +56,7 @@ perl -pi -e "s|/lib\b|/%{_lib}|g" configure.in
 
 %build
 rm -f configure
-libtoolize --copy --force; aclocal -I m4; autoconf; automake
+libtoolize --copy --force; aclocal -I m4; autoconf; automake --add-missing
 
 %serverbuild
 
