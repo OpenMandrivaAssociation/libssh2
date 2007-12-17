@@ -16,7 +16,6 @@ BuildRequires:	pkgconfig
 BuildRequires:	openssl-devel
 BuildRequires:	zlib-devel
 BuildRequires:	libtool
-BuildRoot:	%{_tmppath}/%{rname}-%{version}-buildroot
 
 %description
 libssh2 is a library implementing the SSH2 protocol as defined by Internet
