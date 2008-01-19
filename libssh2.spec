@@ -37,6 +37,7 @@ Summary:	Static library and header files for the %{rname} library
 Group:		Development/C
 Provides:	%{rname}-devel = %{version}
 Provides:	libssh-devel = %{version}
+Provides:	ssh2-devel = %{version}
 Requires:	%{libname} = %{version}
 
 %description -n	%{develname}
