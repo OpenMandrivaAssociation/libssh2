@@ -7,7 +7,7 @@
 Summary:	A library implementing the SSH2 protocol
 Name:		%{rname}
 Version:	0.18
-Release:	%mkrel 4
+Release:	%mkrel 5
 Group:		System/Libraries
 License:	BSD
 URL:		http://www.libssh2.org/
@@ -16,7 +16,7 @@ BuildRequires:	pkgconfig
 BuildRequires:	openssl-devel
 BuildRequires:	zlib-devel
 BuildRequires:	libtool
-BuildRoot:	%{_tmppath}/%{rname}-%{version}-buildroot
+BuildRoot:	%{_tmppath}/%{name}-%{version}-%{release}-buildroot
 
 %description
 libssh2 is a library implementing the SSH2 protocol as defined by Internet
