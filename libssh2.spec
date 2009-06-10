@@ -6,7 +6,7 @@
 
 Summary:	A library implementing the SSH2 protocol
 Name:		%{rname}
-Version:	1.0
+Version:	1.1
 Release:	%mkrel 1
 Group:		System/Libraries
 License:	BSD
