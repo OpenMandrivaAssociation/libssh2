@@ -6,12 +6,13 @@
 
 Summary:	A library implementing the SSH2 protocol
 Name:		%{rname}
-Version:	1.1
+Version:	1.2
 Release:	%mkrel 1
 Group:		System/Libraries
 License:	BSD
 URL:		http://www.libssh2.org/
 Source0:	http://prdownloads.sourceforge.net/libssh2/%{rname}-%{version}.tar.gz
+Source1:	http://prdownloads.sourceforge.net/libssh2/%{rname}-%{version}.tar.gz.asc
 BuildRequires:	pkgconfig
 BuildRequires:	openssl-devel
 BuildRequires:	zlib-devel
