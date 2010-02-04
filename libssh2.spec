@@ -6,13 +6,13 @@
 
 Summary:	A library implementing the SSH2 protocol
 Name:		%{rname}
-Version:	1.2.2
+Version:	1.2.3
 Release:	%mkrel 1
 Group:		System/Libraries
 License:	BSD
 URL:		http://www.libssh2.org/
-Source0:	http://prdownloads.sourceforge.net/libssh2/%{rname}-%{version}.tar.gz
-Source1:	http://prdownloads.sourceforge.net/libssh2/%{rname}-%{version}.tar.gz.asc
+Source0:	http://www.libssh2.org/download/%{rname}-%{version}.tar.gz
+Source1:	http://www.libssh2.org/download/%{rname}-%{version}.tar.gz.asc
 BuildRequires:	pkgconfig
 BuildRequires:	openssl-devel
 BuildRequires:	zlib-devel
@@ -49,19 +49,10 @@ SECSH-ARCH(20), SECSH-FILEXFER(06)*, SECSH-DHGEX(04), and SECSH-NUMBERS(10).
 This package contains the static %{rname} library and its header files.
 
 %prep
-
 %setup -q -n %{rname}-%{version}
 
-# this is a mess
-perl -pi -e "s|/lib/|/%{_lib}/|g" configure.in
-perl -pi -e "s|/lib\b|/%{_lib}|g" configure.in
-
 %build
-rm -f configure
-libtoolize --copy --force; aclocal -I m4; autoconf; automake --add-missing
-
 %serverbuild
-
 %configure2_5x \
     --without-libgcrypt-prefix \
     --with-openssl=%{_prefix} \
