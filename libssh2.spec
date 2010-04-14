@@ -6,8 +6,8 @@
 
 Summary:	A library implementing the SSH2 protocol
 Name:		%{rname}
-Version:	1.2.4
-Release:	%mkrel 3
+Version:	1.2.5
+Release:	%mkrel 1
 Group:		System/Libraries
 License:	BSD
 URL:		http://www.libssh2.org/
