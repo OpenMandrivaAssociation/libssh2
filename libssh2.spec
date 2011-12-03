@@ -7,7 +7,7 @@
 Summary:	A library implementing the SSH2 protocol
 Name:		%{rname}
 Version:	1.3.0
-Release:	%mkrel 1
+Release:	2
 Group:		System/Libraries
 License:	BSD
 URL:		http://www.libssh2.org/
@@ -16,8 +16,7 @@ Source1:	http://www.libssh2.org/download/%{rname}-%{version}.tar.gz.asc
 BuildRequires:	pkgconfig
 BuildRequires:	openssl-devel
 BuildRequires:	zlib-devel
-BuildRequires:	libtool
-BuildRoot:	%{_tmppath}/%{name}-%{version}-%{release}-buildroot
+BuildRequires:	autoconf automake libtool
 
 %description
 libssh2 is a library implementing the SSH2 protocol as defined by Internet
@@ -39,7 +38,7 @@ Group:		Development/C
 Provides:	%{rname}-devel = %{version}
 Provides:	libssh-devel = %{version}
 Provides:	ssh2-devel = %{version}
-Requires:	%{libname} = %{version}
+Requires:	%{libname} >= %{version}-%{release}
 
 %description -n	%{develname}
 libssh2 is a library implementing the SSH2 protocol as defined by Internet
@@ -52,7 +51,6 @@ This package contains the static %{rname} library and its header files.
 %setup -q -n %{rname}-%{version}
 
 %build
-%serverbuild
 %configure2_5x \
     --without-libgcrypt-prefix \
     --with-openssl=%{_prefix} \
@@ -68,27 +66,15 @@ rm -rf %{buildroot}
 
 %makeinstall_std
 
-%if %mdkversion < 200900
-%post -n %{libname} -p /sbin/ldconfig
-%endif
-
-%if %mdkversion < 200900
-%postun -n %{libname} -p /sbin/ldconfig
-%endif
-
-%clean
-rm -rf %{buildroot}
+# cleanup
+rm -rf %{buildroot}%{_libdir}/*.*a
 
 %files -n %{libname}
-%defattr(-,root,root)
 %doc AUTHORS COPYING ChangeLog NEWS README
 %{_libdir}/*.so.%{major}*
 
 %files -n %{develname}
-%defattr(-,root,root)
 %{_includedir}/*
 %{_libdir}/*.so
-%{_libdir}/*.a
-%{_libdir}/*.la
 %{_mandir}/man3/*
 %{_libdir}/pkgconfig/*.pc
