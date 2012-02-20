@@ -62,8 +62,6 @@ This package contains the static %{rname} library and its header files.
 #make check <- barfs at "Failed requesting pty", works as root
 
 %install
-rm -rf %{buildroot}
-
 %makeinstall_std
 
 # cleanup
