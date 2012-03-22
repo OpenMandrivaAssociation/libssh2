@@ -1,13 +1,13 @@
-%define	rname libssh2
+%define rname libssh2
 
-%define	major 1
-%define libname	%mklibname ssh2_ %{major}
+%define major 1
+%define libname %mklibname ssh2_ %{major}
 %define develname %mklibname ssh2 -d
 
 Summary:	A library implementing the SSH2 protocol
 Name:		%{rname}
 Version:	1.4.0
-Release:	1
+Release:	2
 Group:		System/Libraries
 License:	BSD
 URL:		http://www.libssh2.org/
@@ -16,18 +16,20 @@ Source1:	http://www.libssh2.org/download/%{rname}-%{version}.tar.gz.asc
 BuildRequires:	pkgconfig
 BuildRequires:	openssl-devel
 BuildRequires:	zlib-devel
-BuildRequires:	autoconf automake libtool
+BuildRequires:	autoconf
+BuildRequires:	automake
+BuildRequires:	libtool
 
 %description
 libssh2 is a library implementing the SSH2 protocol as defined by Internet
 Drafts: SECSH-TRANS(22), SECSH-USERAUTH(25), SECSH-CONNECTION(23),
 SECSH-ARCH(20), SECSH-FILEXFER(06)*, SECSH-DHGEX(04), and SECSH-NUMBERS(10).
 
-%package -n     %{libname}
+%package -n	%{libname}
 Summary:	A library implementing the SSH2 protocol
 Group:		System/Libraries
 
-%description -n %{libname}
+%description -n	%{libname}
 libssh2 is a library implementing the SSH2 protocol as defined by Internet
 Drafts: SECSH-TRANS(22), SECSH-USERAUTH(25), SECSH-CONNECTION(23),
 SECSH-ARCH(20), SECSH-FILEXFER(06)*, SECSH-DHGEX(04), and SECSH-NUMBERS(10).
@@ -54,7 +56,8 @@ This package contains the static %{rname} library and its header files.
 %configure2_5x \
     --without-libgcrypt-prefix \
     --with-openssl=%{_prefix} \
-    --with-libz=%{_prefix}
+    --with-libz=%{_prefix} \
+    --disable-static
 
 %make
 
@@ -64,9 +67,6 @@ This package contains the static %{rname} library and its header files.
 %install
 %makeinstall_std
 
-# cleanup
-rm -rf %{buildroot}%{_libdir}/*.*a
-
 %files -n %{libname}
 %doc AUTHORS COPYING ChangeLog NEWS README
 %{_libdir}/*.so.%{major}*
@@ -74,5 +74,8 @@ rm -rf %{buildroot}%{_libdir}/*.*a
 %files -n %{develname}
 %{_includedir}/*
 %{_libdir}/*.so
+%if %{mdvver} < 201200
+%{_libdir}/*.la
+%endif
 %{_mandir}/man3/*
 %{_libdir}/pkgconfig/*.pc
