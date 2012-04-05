@@ -6,8 +6,8 @@
 
 Summary:	A library implementing the SSH2 protocol
 Name:		%{rname}
-Version:	1.4.0
-Release:	2
+Version:	1.4.1
+Release:	1
 Group:		System/Libraries
 License:	BSD
 URL:		http://www.libssh2.org/
