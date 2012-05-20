@@ -6,7 +6,7 @@
 
 Summary:	A library implementing the SSH2 protocol
 Name:		%{rname}
-Version:	1.4.1
+Version:	1.4.2
 Release:	1
 Group:		System/Libraries
 License:	BSD
@@ -57,7 +57,8 @@ This package contains the static %{rname} library and its header files.
     --without-libgcrypt-prefix \
     --with-openssl=%{_prefix} \
     --with-libz=%{_prefix} \
-    --disable-static
+    --disable-static \
+    --disable-examples-build
 
 %make
 
