@@ -1,3 +1,2 @@
 sources:
-  "libssh2-1.4.2.tar.gz:"	7fc084254dabe14a9bc90fa3d569faa7ee943e19
-  "libssh2-1.4.2.tar.gz.asc:"	de7319f8bd1fcf6a26273be525f2715ecfdb2f06
+  "libssh2-1.4.2.tar.gz": 7fc084254dabe14a9bc90fa3d569faa7ee943e19
