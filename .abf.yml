@@ -1,2 +1,5 @@
+removed_sources:
+  libssh2-1.4.2.tar.gz: 7fc084254dabe14a9bc90fa3d569faa7ee943e19
 sources:
-  "libssh2-1.4.2.tar.gz": 7fc084254dabe14a9bc90fa3d569faa7ee943e19
+  libssh2-1.4.3.tar.gz: c27ca83e1ffeeac03be98b6eef54448701e044b0
+  libssh2-1.4.3.tar.gz.asc: a645302ac457395a33e1d7d14e301e357ef475cd
