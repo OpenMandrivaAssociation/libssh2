@@ -47,7 +47,7 @@ This package contains the static %{name} library and its header files.
 %setup -q
 
 %build
-%configure2_5x \
+%configure \
 	--without-libgcrypt-prefix \
 	--with-openssl=%{_prefix} \
 	--with-libz=%{_prefix} \
