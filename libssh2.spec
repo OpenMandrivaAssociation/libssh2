@@ -4,8 +4,8 @@
 
 Summary:	A library implementing the SSH2 protocol
 Name:		libssh2
-Version:	1.4.3
-Release:	9
+Version:	1.5.0
+Release:	1
 Group:		System/Libraries
 License:	BSD
 Url:		http://www.libssh2.org/
@@ -66,9 +66,8 @@ This package contains the static %{name} library and its header files.
 %{_libdir}/libssh2.so.%{major}*
 
 %files -n %{devname}
-%doc AUTHORS COPYING ChangeLog NEWS README
+%doc docs/AUTHORS COPYING ChangeLog NEWS README
 %{_includedir}/*
 %{_libdir}/*.so
 %{_mandir}/man3/*
 %{_libdir}/pkgconfig/*.pc
-
