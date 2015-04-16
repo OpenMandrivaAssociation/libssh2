@@ -63,10 +63,11 @@ This package contains the static %{name} library and its header files.
 %makeinstall_std
 
 %files -n %{libname}
+%doc COPYING 
 %{_libdir}/libssh2.so.%{major}*
 
 %files -n %{devname}
-%doc docs/AUTHORS COPYING ChangeLog NEWS README
+%doc docs/AUTHORS docs/BINDINGS docs/HACKING docs/TODO ChangeLog NEWS README RELEASE-NOTES
 %{_includedir}/*
 %{_libdir}/*.so
 %{_mandir}/man3/*
