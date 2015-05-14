@@ -1,3 +1,6 @@
+# without this no-undefined flag gets passed in the pkgconfig file
+%define _disable_ld_no_undefined 1
+
 %define major	1
 %define libname	%mklibname ssh2_ %{major}
 %define devname	%mklibname ssh2 -d
@@ -5,7 +8,7 @@
 Summary:	A library implementing the SSH2 protocol
 Name:		libssh2
 Version:	1.5.0
-Release:	1
+Release:	2
 Group:		System/Libraries
 License:	BSD
 Url:		http://www.libssh2.org/
