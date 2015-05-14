@@ -1,3 +1,6 @@
+# without this no-undefined flag gets passed in the pkgconfig file
+%define _disable_ld_no_undefined 1
+
 %define major	1
 %define libname	%mklibname ssh2_ %{major}
 %define devname	%mklibname ssh2 -d
@@ -5,12 +8,13 @@
 Summary:	A library implementing the SSH2 protocol
 Name:		libssh2
 Version:	1.4.3
-Release:	3
+Release:	3.1
 Group:		System/Libraries
 License:	BSD
 Url:		http://www.libssh2.org/
 Source0:	http://www.libssh2.org/download/%{name}-%{version}.tar.gz
 Source1:	http://www.libssh2.org/download/%{name}-%{version}.tar.gz.asc
+Patch1:		libssh2-1.4.3-CVE-2015-1782.patch
 BuildRequires:	libtool
 BuildRequires:	pkgconfig(openssl)
 BuildRequires:	pkgconfig(zlib)
@@ -45,6 +49,7 @@ This package contains the static %{name} library and its header files.
 
 %prep
 %setup -q
+%apply_patches
 
 %build
 %configure2_5x \
