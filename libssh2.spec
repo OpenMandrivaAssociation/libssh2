@@ -14,7 +14,6 @@ License:	BSD
 Url:		http://www.libssh2.org/
 Source0:	http://www.libssh2.org/download/%{name}-%{version}.tar.gz
 Source1:	http://www.libssh2.org/download/%{name}-%{version}.tar.gz.asc
-Patch0:		libssh2-1.4.2-pkgconfig.patch
 BuildRequires:	libtool
 BuildRequires:	pkgconfig(openssl)
 BuildRequires:	pkgconfig(zlib)
