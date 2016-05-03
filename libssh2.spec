@@ -7,14 +7,13 @@
 
 Summary:	A library implementing the SSH2 protocol
 Name:		libssh2
-Version:	1.4.3
-Release:	3.1
+Version:	1.7.0
+Release:	0.1
 Group:		System/Libraries
 License:	BSD
 Url:		http://www.libssh2.org/
 Source0:	http://www.libssh2.org/download/%{name}-%{version}.tar.gz
 Source1:	http://www.libssh2.org/download/%{name}-%{version}.tar.gz.asc
-Patch1:		libssh2-1.4.3-CVE-2015-1782.patch
 BuildRequires:	libtool
 BuildRequires:	pkgconfig(openssl)
 BuildRequires:	pkgconfig(zlib)
@@ -68,12 +67,12 @@ This package contains the static %{name} library and its header files.
 %makeinstall_std
 
 %files -n %{libname}
+%doc COPYING 
 %{_libdir}/libssh2.so.%{major}*
 
 %files -n %{devname}
-%doc AUTHORS COPYING ChangeLog NEWS README
+%doc docs/AUTHORS docs/BINDINGS docs/HACKING docs/TODO ChangeLog NEWS README RELEASE-NOTES
 %{_includedir}/*
 %{_libdir}/*.so
 %{_mandir}/man3/*
 %{_libdir}/pkgconfig/*.pc
-
