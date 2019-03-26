@@ -7,8 +7,8 @@
 
 Summary:	A library implementing the SSH2 protocol
 Name:		libssh2
-Version:	1.8.0
-Release:	2
+Version:	1.8.2
+Release:	1
 Group:		System/Libraries
 License:	BSD
 Url:		http://www.libssh2.org/
