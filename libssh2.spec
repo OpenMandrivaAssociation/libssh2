@@ -1,14 +1,14 @@
 # without this no-undefined flag gets passed in the pkgconfig file
 %define _disable_ld_no_undefined 1
 
-%define major	1
-%define libname	%mklibname ssh2_ %{major}
-%define devname	%mklibname ssh2 -d
+%define major 1
+%define libname %mklibname ssh2_ %{major}
+%define devname %mklibname ssh2 -d
 
 Summary:	A library implementing the SSH2 protocol
 Name:		libssh2
 Version:	1.8.2
-Release:	1
+Release:	2
 Group:		System/Libraries
 License:	BSD
 Url:		http://www.libssh2.org/
@@ -17,6 +17,7 @@ Source1:	http://www.libssh2.org/download/%{name}-%{version}.tar.gz.asc
 BuildRequires:	libtool
 BuildRequires:	pkgconfig(openssl)
 BuildRequires:	pkgconfig(zlib)
+BuildRequires:	hostname
 
 %description
 libssh2 is a library implementing the SSH2 protocol as defined by Internet
@@ -47,8 +48,7 @@ SECSH-ARCH(20), SECSH-FILEXFER(06)*, SECSH-DHGEX(04), and SECSH-NUMBERS(10).
 This package contains the static %{name} library and its header files.
 
 %prep
-%setup -q
-%apply_patches
+%autosetup -p1
 
 %build
 %configure \
@@ -58,13 +58,13 @@ This package contains the static %{name} library and its header files.
 	--disable-static \
 	--disable-examples-build
 
-%make
+%make_build
 
 ##%check
 #make check <- barfs at "Failed requesting pty", works as root
 
 %install
-%makeinstall_std
+%make_install
 
 %files -n %{libname}
 %doc COPYING 
