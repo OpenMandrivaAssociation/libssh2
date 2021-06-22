@@ -1,0 +1,12 @@
+diff -up libssh2-1.9.0/configure.ac.omv~ libssh2-1.9.0/configure.ac
+--- libssh2-1.9.0/configure.ac.omv~	2021-06-22 18:31:45.201896418 +0200
++++ libssh2-1.9.0/configure.ac	2021-06-22 18:31:45.196896415 +0200
+@@ -127,7 +127,7 @@ fi
+ m4_set_foreach([crypto_backends], [backend],
+   [AM_CONDITIONAL(m4_toupper(backend), test "$found_crypto" = "backend")]
+ )
+-m4_undefine([backend])
++#m4_undefine([backend])
+ 
+ 
+ # libz

@@ -8,12 +8,13 @@
 Summary:	A library implementing the SSH2 protocol
 Name:		libssh2
 Version:	1.9.0
-Release:	3
+Release:	4
 Group:		System/Libraries
 License:	BSD
 Url:		http://www.libssh2.org/
 Source0:	http://www.libssh2.org/download/%{name}-%{version}.tar.gz
 Source1:	http://www.libssh2.org/download/%{name}-%{version}.tar.gz.asc
+Patch0:		libssh2-1.9.0-autoconf.patch
 BuildRequires:	libtool
 BuildRequires:	pkgconfig(openssl)
 BuildRequires:	pkgconfig(zlib)
@@ -49,8 +50,6 @@ This package contains the static %{name} library and its header files.
 
 %prep
 %autosetup -p1
-
-%build
 %configure \
 	--without-libgcrypt-prefix \
 	--with-openssl=%{_prefix} \
@@ -58,6 +57,7 @@ This package contains the static %{name} library and its header files.
 	--disable-static \
 	--disable-examples-build
 
+%build
 %make_build
 
 ##%check
