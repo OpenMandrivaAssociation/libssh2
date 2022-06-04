@@ -7,14 +7,13 @@
 
 Summary:	A library implementing the SSH2 protocol
 Name:		libssh2
-Version:	1.9.0
-Release:	5
+Version:	1.10.0
+Release:	1
 Group:		System/Libraries
 License:	BSD
 Url:		http://www.libssh2.org/
 Source0:	http://www.libssh2.org/download/%{name}-%{version}.tar.gz
 Source1:	http://www.libssh2.org/download/%{name}-%{version}.tar.gz.asc
-Patch0:		libssh2-1.9.0-autoconf.patch
 BuildRequires:	libtool
 BuildRequires:	pkgconfig(openssl)
 BuildRequires:	pkgconfig(zlib)
