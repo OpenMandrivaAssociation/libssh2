@@ -1,2 +1,3 @@
 sources:
-  libssh2-1.11.0.tar.gz: fbdb4751a4bc93e895e9c3426f7f80b437d250fe
+  libssh2-1.11.1.tar.gz: 61c721696f08bf91d23dd59b766bac65e9a78b04
+  libssh2-1.11.1.tar.gz.asc: d1d810ea2c4807fe71b0b66c784bd874ad5b9c67
